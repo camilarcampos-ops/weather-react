@@ -1,0 +1,38 @@
+.title-city-date {
+  text-align: left;
+}
+
+.weather-now {
+  font-size: 70px;
+  text-align: left;
+}
+
+.units {
+  position: relative;
+  top: -35px;
+}
+
+.units .none {
+  color: black;
+  text-decoration: none;
+}
+
+.weather-details {
+  padding: 0;
+  margin-top: 22px;
+}
+
+.units a.active {
+  color: #251648;
+  font-weight: bold;
+  cursor: default;
+  text-decoration: none;
+}
+
+.units a.active:hover {
+  text-decoration: none;
+}
+
+.icon-weather-now {
+  width: 100px;
+}
