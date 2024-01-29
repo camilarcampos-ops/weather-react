@@ -20,24 +20,11 @@ export default function WeatherToday() {
           <span className="weather-now" id="temperature">
             20
           </span>
-          <span className="units">
-            <a href={""} id="celsius-link" className="active">
-              °C
-            </a>
-            |
-            <a href={""} id="fahrenheit-link" className="none">
-              °F
-            </a>
-          </span>
+          <span className="units">°C | °F</span>
         </div>
         <div className="col-2 weather-details">
-          <h3 id="temperature-description"></h3>
-          <h3>
-            Humidity: <span id="humidity"></span>60%
-          </h3>
-          <h3>
-            Wind: <span id="wind"></span> 15km/h
-          </h3>
+          <h3>Humidity: 60%</h3>
+          <h3>Wind: 15km/h</h3>
         </div>
       </div>
     </section>
