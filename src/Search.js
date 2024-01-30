@@ -1,24 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import WeatherToday from "./WeatherToday";
+import axios from "axios";
+
 import "./Search.css";
 
-export default function Search() {
-  return (
-    <section className="Search">
-      <form id="search-city">
-        <input
-          type="search"
-          placeholder="Enter a city"
-          className="field"
-          autoFocus
-          autoComplete="off"
-          id="city-input"
-          required
-        />
-        <input type="submit" value="Search" className="search-button" />
-        <button className="search-button" id="currentLocation">
-          Current Location
-        </button>
-      </form>
-    </section>
-  );
+export default function Search(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
+
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      iconUrl: "images/rainy-day.png",
+      wind: response.data.wind.speed,
+      city: response.data.name,
+    });
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "e847656cc28a6e5bb451821d4153d52f";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  if (weatherData.ready) {
+    return (
+      <section className="Search">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter a city"
+            className="field"
+            autoFocus="on"
+            autoComplete="off"
+            onChange={handleCityChange}
+          />
+          <input type="submit" value="Search" className="search-button" />
+          <button className="search-button">Current Location</button>
+        </form>
+        <WeatherToday data={weatherData} />
+      </section>
+    );
+  } else {
+    search();
+    return "Loading...";
+  }
 }

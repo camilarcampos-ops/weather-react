@@ -2,23 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "./WeatherPage.css";
-
-import Search from "./Search";
-import WeatherToday from "./WeatherToday";
-import Signature from "./Signature";
+import WeatherPage from "./WeatherPage";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <div className="WeatherPage">
-      <div className="weather-box">
-        <Search />
-        <WeatherToday />
-        <Signature />
-      </div>
-    </div>
+    <WeatherPage />
   </StrictMode>
 );
