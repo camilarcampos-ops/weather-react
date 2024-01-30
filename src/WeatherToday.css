@@ -5,6 +5,7 @@
 .weather-now {
   font-size: 70px;
   text-align: left;
+  padding-right: 10px;
 }
 
 .units {
@@ -34,5 +35,5 @@
 }
 
 .icon-weather-now {
-  width: 100px;
+  width: 120px;
 }
