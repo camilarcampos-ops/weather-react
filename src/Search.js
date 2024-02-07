@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WeatherToday from "./WeatherToday";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 
 import "./Search.css";
@@ -8,9 +9,14 @@ export default function Search(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
+  useEffect(() => {
+    search();
+  }, [city]);
+
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
@@ -52,6 +58,10 @@ export default function Search(props) {
           <button className="search-button">Current Location</button>
         </form>
         <WeatherToday data={weatherData} />
+        <WeatherForecast
+          coordinates={weatherData.coordinates}
+          currentIconUrl={weatherData.iconUrl}
+        />
       </section>
     );
   } else {
