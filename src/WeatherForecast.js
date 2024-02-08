@@ -8,6 +8,15 @@ export default function WeatherForecast(props) {
   let [forecast, setForecast] = useState(null);
 
   useEffect(() => {
+    const load = () => {
+      let apiKey = "cf6b50b908fa2e0baca3eed8a569a5f6";
+      let longitude = props.coordinates.lon;
+      let latitude = props.coordinates.lat;
+      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+      axios.get(apiUrl).then(handleResponse);
+    };
+
     if (props.coordinates) {
       setLoaded(false);
       load();
@@ -17,15 +26,6 @@ export default function WeatherForecast(props) {
   function handleResponse(response) {
     setForecast(response.data.daily);
     setLoaded(true);
-  }
-
-  function load() {
-    let apiKey = "cf6b50b908fa2e0baca3eed8a569a5f6";
-    let longitude = props.coordinates.lon;
-    let latitude = props.coordinates.lat;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-
-    axios.get(apiUrl).then(handleResponse);
   }
 
   if (loaded) {
