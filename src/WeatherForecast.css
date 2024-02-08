@@ -1,18 +1,24 @@
-.weather-forecast {
-  margin-top: 20px;
+.row {
+  margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
   font-size: 16px;
 }
 
-.weather-forecast-date {
+.weatherForecast-day {
   font-size: 16px;
   font-weight: 500;
 }
 
 .weather-forecast-temperature-min {
   opacity: 0.5;
+  margin-left: 5px;
 }
 
 .weather-forecast-temperatures {
   font-size: 14px;
+}
+
+.weatherForecast-icon {
+  width: 36px;
 }
